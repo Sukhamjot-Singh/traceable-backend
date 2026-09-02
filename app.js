@@ -24,5 +24,11 @@ app.get('/getContainers', (req, res) => {
 app.post('/ping', (req, res) => {
     res.send('pong');
 });
+app.get('/health', (req, res) => {
+    res.send('ok');
+});
+app.post('/echo', (req, res) => {
+    res.json(req.body);
+});
 
 app.listen(port, () => console.log(`Traceable Backend app listening on port ${port}!`))
