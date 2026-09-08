@@ -1,0 +1,17 @@
+name: Test code-scan
+on:
+  workflow_dispatch:
+
+jobs:
+  code-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Discover APIs from source
+        uses: Traceableai/ast-action/code-scan@APIST-2128-code-scan-docker
+        with:
+          code_path: .
+          client_scan_token: ${{ secrets.TOKEN }}
+          traceable_server: api-dev.traceable.ai
+          additional_cli_options: '--loglevel DEBUG'
