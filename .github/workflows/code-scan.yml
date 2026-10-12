@@ -20,6 +20,7 @@ jobs:
         uses: Traceableai/ast-action/queue-scan@v2
         with:
           scan_name: traceable-backend-repo-scan
+          runner_ids: 'sukham-local'
           client_scan_token: ${{ secrets.TOKEN }}
           traceable_server: api-dev.traceable.ai
           wait: 'true'
