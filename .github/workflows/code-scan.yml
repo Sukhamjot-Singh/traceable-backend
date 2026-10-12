@@ -15,3 +15,20 @@ jobs:
           client_scan_token: ${{ secrets.TOKEN }}
           traceable_server: api-dev.traceable.ai
           additional_cli_options: '--loglevel DEBUG'
+
+      - name: Run DAST scan
+        uses: Traceableai/ast-action/queue-scan@v2
+        with:
+          scan_name: traceable-backend-repo-scan
+          client_scan_token: ${{ secrets.TOKEN }}
+          traceable_server: api-dev.traceable.ai
+          wait: 'true'
+          wait_timeout: '30'
+          additional_cli_options: '--loglevel DEBUG'
+
+      - name: Publish DAST report
+        if: always()
+        uses: Traceableai/ast-action/report@v2
+        with:
+          client_scan_token: ${{ secrets.TOKEN }}
+          traceable_server: api-dev.traceable.ai
